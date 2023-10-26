@@ -1,0 +1,411 @@
+@font-face {
+  font-family: 'Arial-MT';
+  src: url("../assets/fonts/Arial-MT.woff"); /* Путь к файлу со шрифтом */
+ }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+body {
+  min-width: 480px;
+  max-height: 100vh;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  background:  center/cover, rgba(0, 0, 0, 0.5);
+  background-blend-mode: multiply;
+  transition: background-image 1s ease-in-out;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  height: 30vh;
+  min-height: 220px;  
+  padding: 20px;
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 120px;
+  margin-bottom: 28px;
+}
+
+.play-list {
+  text-align: left;
+}
+
+.play-item {
+  position: relative;
+  padding: 5px;
+  padding-left: 20px;
+  list-style: none;
+  opacity: .8;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.play-item:hover {
+  opacity: 1;
+}
+
+.play-item::before {
+  content: "\2713";  
+  position: absolute;
+  left: 0;
+  top: 2px;
+  font-weight: 900;
+}
+
+.player-icon,
+.slider-icon,
+.change-quote {
+  width: 40px;
+  height: 40px;
+  background-size: 30px 30px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  opacity: .8;
+  cursor: pointer;
+  transition: .3s;  
+}
+
+.player-icon:hover,
+.slider-icon:hover,
+.change-quote:hover {
+  opacity: 1;
+}
+
+.player-icon:active,
+.slider-icon:active,
+.change-quote:active {
+  border: 0;
+  outline: 0; 
+  opacity: 1; 
+
+}
+
+.play {
+  width: 40px;
+  height: 40px;
+  background-size: 40px 40px;
+  background-image: url("../assets/svg/play.svg");
+}
+
+.pause {
+  background-image: url("../assets/svg/pause.svg");
+}
+
+.play-prev {
+  background-image: url("../assets/svg/play-next.svg");
+  transform: rotateY(180deg);
+}
+
+.play-next {
+  background-image: url("../assets/svg/play-next.svg");
+}
+
+.weather {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  row-gap: 5px;
+  width: 180px;
+  min-height: 180px;  
+  text-align: left;
+}
+
+.weather-error {
+  margin-top: -10px;
+}
+
+.description-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 12px;
+}
+
+
+.weather-icon {
+  font-size: 44px;
+}
+
+.city {
+  width: 170px;
+  height: 34px;
+  padding: 5px;
+  font-size: 20px;
+  line-height: 24px;
+  color: #fff;  
+  border: 0;
+  outline: 0;
+  border-bottom: 1px solid #fff;
+  background-color: transparent;
+}
+
+.city::placeholder {  
+  font-size: 20px;
+  color: #fff;
+  opacity: .6;
+}
+
+.main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 40vh;
+  min-height: 260px;  
+  padding: 20px;
+}
+
+.slider-icon {
+  position: absolute;
+  top: 50%;
+  margin-top: -16px;
+  cursor: pointer;
+}
+
+.slide-prev {
+  left: 20px;
+  background-image: url("../assets/svg/slider-prev.svg");
+}
+
+.slide-next {
+  right: 20px;
+  background-image: url("../assets/svg/slider-next.svg");
+}
+
+#time {
+  min-height: 124px;
+  margin-bottom: 10px;
+  font-family: 'Arial-MT';
+  font-size: 100px;
+  letter-spacing: -4px;  
+}
+
+.date {
+  min-height: 28px;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.greeting-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: stretch;
+  align-items: center;
+  min-height: 48px;
+  width: 100vw;
+  font-size: 40px;
+}
+
+.greeting {
+  flex: 1;  
+  padding: 10px;
+  text-align: right;
+}
+
+.name {
+  flex: 1;
+  max-width: 50%;
+  padding: 10px;
+  font-size: 40px;
+  text-align: left;
+  color: #fff;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+}
+
+.name::placeholder {
+  color: #fff;
+  opacity: .6;
+}
+.settings{
+  width: 35px;
+  height: 35px;
+  background-image: url('./../assets/svg/setting.svg');
+  background-size: contain;
+  background-position: center center;
+  transition: all 1s linear;
+  background-repeat: no-repeat;
+
+  &:active{
+    transform: rotate(70deg);
+
+  }
+.settings-show{
+  transform: rotate(70deg);
+}
+}
+.footer {
+
+  align-items:flex-end;
+  width: 100%;
+  height: 30vh;
+  min-height: 100px;  
+  position: relative;
+  font-weight: 600;
+  font-size: 18px;
+}
+.quote-block{
+  font-weight: 500;
+}
+.first-line{
+  padding: 30px;
+  display: flex;
+  width:100%;
+  justify-content:space-between;
+  align-items: flex-end;
+  position: absolute;
+  bottom: 72px;
+
+}
+
+.second-line{
+  display: flex;
+  padding: 5px 20px;
+  justify-content:space-between;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  position: absolute;
+  bottom: 0;
+}
+.rsschool{
+  width: 64px;
+  height: auto;
+  transition: 0.3s;
+  &:hover{
+    transform: scale(1.05);
+  }
+}
+.git{
+  transition: 0.4s;
+
+  &:hover{
+    transform: scale(1.05);
+  }
+}
+.change-quote {
+  display: block;
+  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  background-image: url("../assets/svg/reload.svg");  
+}
+
+.quote {
+  min-height: 32px;
+}
+.item-active::before {
+  color: #ff7f50;
+}
+.author {
+  min-height: 20px;
+}
+.player,.weather,.time, .date,.greeting,.quote-block,.todo-block{
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.3s;
+}
+
+.hidden{
+  visibility: hidden;
+  opacity: 0;
+}
+
+.todo-block{
+  cursor: pointer;
+}
+@media (max-width: 1200px) {
+  #time {
+    min-height: 80px;
+    font-size: 72px;    
+  }
+  .quote-block{
+    padding: 0 10px;
+  }
+  .greeting-container {
+    min-height: 40px;
+    font-size: 32px;
+  }
+
+  .greeting {
+    padding: 5px;
+  }
+
+  .name {
+    font-size: 32px;
+    padding: 5px;
+  }
+}
+
+
+@media (max-width:700px){
+  .name-music{
+    display: none;
+  }
+  .audio-player{
+    width: 320px;
+  }
+}
+@media (max-width: 500px) {
+  body{
+    min-width: 320px;
+  }
+
+  .footer{
+    font-size: 12px;
+  }
+  #time {
+    min-height: 80px;
+    font-size: 50px;    
+  }
+  .date, .greeting-container,.name{
+    font-size: 18px; 
+  }
+  .date{
+    margin-bottom: 0;
+  }
+  .weather{
+    width: 120px;
+    min-height: 120px;
+  >*{
+    font-size: 14px;
+  }
+}
+  .weather .city{
+    font-size: 18px;
+    width: 120px;
+  }
+
+
+}
+@media (max-width: 400px) {
+
+.header{
+  padding: 20px 10px;
+}
+}

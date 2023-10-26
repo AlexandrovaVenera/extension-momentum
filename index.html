@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="assets/favicon.ico" rel="shortcut icon" />
+  <link rel="stylesheet" href="css/owfont-regular.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <title>momentum</title>
+</head>
+<body>
+  <header class="header">
+    <div class="player hidden" data-widget="audio">
+      <div class="audio-player">
+        <div class="timeline">
+          <div class="progress"></div>
+        </div>
+        <div class="controls">
+          <div class="play-container">
+            <button class="play-prev player-icon" onclick="previous()"></button>
+            <button class="play player-icon"  onclick="toggleAudio()"><audio src="" ontimeupdate="onTimeUpdate()"></audio></button>
+            <button class="play-next player-icon" onclick="next()"></button>
+          </div>
+          <div class="time">
+            <div class="current">00:00</div>
+            <div class="divider">/</div>
+            <div class="length">00:00</div>
+          </div>
+          <div class="name-music"></div>
+          <div class="volume-container">
+            <div class="volume-button" >
+              <div class="volume icono-volumeMedium" onclick="toggleMute()"></div>
+              <div class="volume-slider">
+                <div class="volume-percentage"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ul class="play-list"></ul>
+    </div>
+    <div class="weather hidden" data-widget="weather">
+      <input type="text" class="city" />
+      <i class="weather-icon owf"></i>
+      <div class="weather-error"></div>
+      <div class="description-container">
+        <span class="temperature"></span>
+        <span class="weather-description"></span>
+      </div>
+      <div class="wind"></div>
+      <div class="humidity"></div>
+    </div>
+  </header>
+  <main class="main">
+    <div class="slider-icons">
+      <button class="slide-prev slider-icon"></button>
+      <button class="slide-next slider-icon"></button>
+    </div>
+    <time class="time hidden" id="time"  data-widget="time"></time>
+    <date class="date hidden" data-widget="date"></date>
+    <div class="greeting-container hidden"  data-widget="greeting">
+      <span class="greeting"></span>
+      <input type="text" class="name" placeholder="Enter name"/>
+    </div>
+  </main>
+  <div class="setting-popup">
+    <aside class="setting-popup__aside">
+      <nav>
+        <ul>
+          <li class="nav-item active-item" data-setting = "language">Language</li>
+          <li class="nav-item" data-setting = "background">Background</li>
+          <li class="nav-item" data-setting = "widgets">Widgets</li>
+          <li class="nav-item" data-setting = "about">About</li>
+        </ul>
+      </nav>
+    </aside>
+    <div class="setting-popup__main">
+      <div class="language-setting setting-page active-setting" data-active = "language">
+        <h2 class="h2-lang setting-title">Language</h2>
+        <button class="button-lang active-lang" data-lang = 'en'>English</button>
+        <button class="button-lang" data-lang = 'ru'>Русский</button>
+      </div>
+      <div class="photos-setting setting-page" data-active = "background">
+        <h2 class="setting-title">Background</h2>
+        <div class="photos-container">
+        <button class="button-photo" data-source-photo = 'git'>Git</button>
+        <button class="button-photo" data-source-photo = 'unsplash'>Unsplash</button>
+        <div class="tags unsplash_tags">
+          <input type="text" class="input-tag" data-input="unsplash">
+          <span class="tip"></span>
+          <span class="not-tip"></span>
+          <div class="unsplash tags-block">
+        </div>
+        </div>
+        <button class="button-photo"  data-source-photo = 'flickr' >Flickr</button>
+        <div class="tags flickr_tags">
+          <input type="text" class="input-tag" data-input="flickr">
+          <span class="tip">Такое значение уже есть</span>
+          <span class="not-tip">Такой тег не предусмотрен</span>
+          <div class="flickr tags-block">
+        </div>
+        </div>
+      </div>
+      </div>
+      <div class="widgets-setting setting-page" data-active = "widgets">
+        <h2 class="setting-title">Widgets</h2>
+        <ul class="widgets-toggle"> 
+          <li class="slide-toggle" data-h2 = 'audio'>
+            <span class="slide-toggle-name">Audio</span>
+            <label class="checkbox-toggle">
+            <input type="checkbox">
+            <span class="widgets-toggle-item" data-title = 'audio'>
+              <svg class="toggle-switch" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="#fff"></circle></svg>
+
+            </span>          
+          </label>
+          </li>
+          <li class="slide-toggle" data-h2 = 'weather'>
+            <span class="slide-toggle-name">Weather</span>
+            
+            <label class="checkbox-toggle">
+            <input type="checkbox">
+            <span class="widgets-toggle-item" data-title = 'weather'>
+              <svg class="toggle-switch" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="#fff"></circle></svg>
+            </span>          
+          </label>
+          </li>
+          <li class="slide-toggle" data-h2 = 'time'>
+            <span class="slide-toggle-name">Time</span>
+            <label class="checkbox-toggle">
+            <input type="checkbox">
+            <span class="widgets-toggle-item" data-title = 'time'>
+              <svg class="toggle-switch" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="#fff"></circle></svg>
+            </span>          
+          </label>
+          </li>
+          <li class="slide-toggle" data-h2 = 'date'>
+            <span class="slide-toggle-name">Date</span>
+            <label class="checkbox-toggle">
+            <input type="checkbox">
+            <span class="widgets-toggle-item" data-title = 'date'>
+              <svg class="toggle-switch" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="#fff"></circle></svg>
+
+            </span>          
+          </label>
+          </li>
+          <li class="slide-toggle" data-h2 = 'greeting'>
+            <span class="slide-toggle-name">Greeting</span>
+            <label class="checkbox-toggle">
+            <input type="checkbox">
+            <span class="widgets-toggle-item" data-title = 'greeting'>
+              <svg class="toggle-switch" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="#fff"></circle></svg>
+
+            </span>          
+          </label>
+          </li>
+          <li class="slide-toggle" data-h2 = 'quote'>
+            <span class="slide-toggle-name">Quote</span>
+            <label class="checkbox-toggle">
+            <input type="checkbox">
+            <span class="widgets-toggle-item" data-title = 'quote'>
+              <svg class="toggle-switch" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="#fff"></circle></svg>
+
+            </span>          
+          </label>
+          </li>
+          <li class="slide-toggle" data-h2 = 'todo'>
+            <span class="slide-toggle-name">ToDo</span>
+            <label class="checkbox-toggle">
+            <input type="checkbox">
+            <span class="widgets-toggle-item" data-title = 'todo'>
+              <svg class="toggle-switch" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="#fff"></circle></svg>
+
+            </span>          
+          </label>
+          </li>
+        </ul>
+      </div>
+      <div class="widgets-setting setting-page" data-active = "about">
+        <h2 class="setting-title">About</h2>
+        <div class="about-block">
+        <img src="./assets/svg/momentum.svg" alt="momentum" class="about-img">
+          <span class="about-title">Momentum</span>
+          <span class="about-version">v1.0.0.0</span>
+          <span class="about-desc">Thank you for your support!</span>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="todo-popup">
+    <div class="todo-list">
+      <ul class="todo-menu">
+      
+      </ul>
+    </div>
+    <input type="text" class="todo-input"><img src = "./assets/svg/telegram.svg" class="todo-btn">
+  </div>
+  <footer class="footer">
+    <div class="first-line">
+      <div class="settings">
+      </div>
+      <div class="quote-block hidden" data-widget="quote">
+        <button class="change-quote"></button>
+        <div>
+          <div class="quote"></div>
+          <div class="author"></div>
+        </div>
+      </div>
+      <div class="todo-block hidden" data-widget="todo">ToDo</div>
+   
+  </div>
+  <div class="second-line">
+    <div class="git"><a href="https://github.com/FaizievaVenera">
+      <img src="./assets/svg/github.svg" alt="github">
+    </a></div>
+    <p>2023</p>
+    <div class="logo"><a href="https://rs.school/js/">
+      <img src="./assets/svg/logo.svg" alt="rs-school" class="rsschool">
+    </a></div>
+  </div>
+
+  </footer>
+  <script src="js/audio2.js"></script>
+  <script src="js/index.js" type="module"></script>
+</body>
+</html>
